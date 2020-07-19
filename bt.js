@@ -156,16 +156,71 @@ sum+=curent.data;
         console.log(sum);
         return sum;
     }
+   
+    filestructure(firsttree,secondtree)
+    {
+        // console.log('firsttree',firsttree);
+        // console.log('secondtree',secondtree);
+      if(firsttree.counter ===secondtree.counter)
+      {
+          console.log('number of nodes are matched');
+          return 'number of nodes are matched '
+      }
+      else
+      {
+          console.log('number of nodes arent matched')
+          return 'number of node arent match ';
+      }
+    }
+}
+class BinaryTree2
+{
+    constructor(value) {
+        this.root = new Node(value);
+        this.counter = 0;
+    }
+    insert(value) {
+
+        this.counter++;
+        let newNode = new Node(value);
+        const _add = (node) => {
+            if (value < node.data) {
+                if (!node.left) {
+                    node.left = newNode;
+                }
+                else {
+                    _add(node.left);
+                }
+            }
+            else if (value > node.data) {
+                if (!node.right) {
+                    node.right = newNode;
+                }
+                else {
+                    _add(node.right);
+                }
+            }
+        }
+        _add(this.root);
+    }
 }
 let bts = new BinaryTree(15);
-let newtree = new BinaryTree();
+let newtree = new BinaryTree2(4);
+let thirdtree=new BinaryTree();
 bts.insert(2);
 bts.insert(5);
 bts.insert(15);
 bts.insert(25);
 bts.insert(30);
-bts.insert(6);
-bts.sum(bts);
+newtree.insert(2);
+newtree.insert(50);
+
+newtree.insert(5);
+newtree.insert(6);
+newtree.insert(17);
+newtree.insert(28);
+newtree.insert(40);
+thirdtree.filestructure(bts,newtree);
 // console.log(bts.contain(8));
 // bts.preoder();
 // bts.postorder();
